@@ -1,32 +1,54 @@
+import { useParams } from "react-router-dom";
 import AuthCard from "../components/AuthCard";
 import Logo from "../components/Logo";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 import "../styles/auth.css";
 
 const Register = () => {
+  const { role } = useParams();
+
   return (
     <div className="login-container">
       <AuthCard>
+
         <Logo
           title="EVENTLAY"
-          subtitle="Sign up to get started."
+          subtitle="Create your account"
         />
+
+        {/* 👇 Put it here */}
+        <div className="selected-role">
+          Registering as
+          <span>
+            {" "}
+            {role.charAt(0).toUpperCase() + role.slice(1)}
+          </span>
+        </div>
 
         <form className="login-form">
           <InputField
+            label="Full Name"
+            type="text"
+            placeholder="Enter your full name"
+          />
+
+          <InputField
             label="Email"
-            name="email"
             type="email"
             placeholder="Enter your email"
           />
 
           <InputField
             label="Password"
-            name="password"
             type="password"
             placeholder="Enter your password"
+          />
+
+          <InputField
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm your password"
           />
 
           <Button
@@ -35,9 +57,6 @@ const Register = () => {
           />
         </form>
 
-        <p className="bottom-text">
-          Already have an account? <Link to="/">Sign In</Link>
-        </p>
       </AuthCard>
     </div>
   );
