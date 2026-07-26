@@ -35,7 +35,7 @@ function Login() {
 
         <p className="bottom-text">
           Don't have an account?{" "}
-          <Link to="/register">Sign Up</Link>
+          <Link to="/select-role">Sign Up</Link>
         </p>
       </div>
     </div>
