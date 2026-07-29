@@ -17,7 +17,6 @@ const Register = () => {
           subtitle="Create your account"
         />
 
-        {/* 👇 Put it here */}
         <div className="selected-role">
           Registering as
           <span>
