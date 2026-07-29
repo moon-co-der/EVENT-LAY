@@ -15,6 +15,9 @@ function AppRoutes() {
 
       {/* Dynamic Route */}
       <Route path="/register/:role" element={<Register />} />
+      <Route path="/organizer/dashboard" element={<Dashboard />} />
+      <Route path="/volunteer/dashboard" element={<Dashboard />} />
+      <Route path="/client/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
