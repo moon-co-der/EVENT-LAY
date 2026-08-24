@@ -1,5 +1,14 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+const generateToken = (id, role) => {
+    return jwt.sign(
+        { id, role },
+        process.env.JWT_SECRET || "event_lay_super_secret_jwt_key_2026",
+        { expiresIn: process.env.JWT_EXPIRES_IN || "30d" }
+    );
+};
 
 export const registerUser = async (req, res) => {
     try {
@@ -29,8 +38,11 @@ export const registerUser = async (req, res) => {
             password: hashedPassword
         });
 
+        const token = generateToken(user._id, user.role);
+
         res.status(201).json({
             message: "Registration successful",
+            token,
             user: {
                 id: user._id,
                 name: user.name,
@@ -71,8 +83,11 @@ export const loginUser = async (req, res) => {
             });
         }
 
+        const token = generateToken(user._id, user.role);
+
         res.status(200).json({
             message: "Login successful",
+            token,
             user: {
                 id: user._id,
                 name: user.name,
@@ -87,7 +102,31 @@ export const loginUser = async (req, res) => {
     }
 };
 
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        res.status(200).json({
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
 export default {
     registerUser,
-    loginUser
+    loginUser,
+    getMe
 };
