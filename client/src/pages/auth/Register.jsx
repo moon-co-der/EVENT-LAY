@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import AuthCard from "../components/AuthCard";
-import Logo from "../components/Logo";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
-import "../styles/auth.css";
+import AuthCard from "../../components/auth_components/AuthCard";
+import Logo from "../../components/auth_components/Logo";
+import InputField from "../../components/auth_components/InputField";
+import Button from "../../components/auth_components/Button";
+import "../../styles/auth.css";
 import { useState } from "react";
-import { registerUser } from "../api/auth";
+import { registerUser } from "../../api/auth";
 
 const Register = () => {
   const { role } = useParams();

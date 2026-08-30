@@ -1,24 +1,17 @@
-import AuthCard from "../components/AuthCard";
-import Logo from "../components/Logo";
-import RoleCard from "../components/RoleCard";
+import AuthCard from "../../components/auth_components/AuthCard";
+import Logo from "../../components/auth_components/Logo";
+import RoleCard from "../../components/auth_components/RoleCard";
 
-import "../styles/auth.css";
-import "../styles/role.css";
+import "../../styles/auth.css";
+import "../../styles/role.css";
 
-import {
-  FaBuilding,
-  FaClipboardCheck,
-  FaUserTie,
-} from "react-icons/fa";
+import { FaBuilding, FaClipboardCheck, FaUserTie } from "react-icons/fa";
 
 const SelectRole = () => {
   return (
     <div className="login-container">
       <AuthCard>
-        <Logo
-          title="EVENTLAY"
-          subtitle="Choose your account type"
-        />
+        <Logo title="EVENTLAY" subtitle="Choose your account type" />
 
         <div className="role-grid">
           <RoleCard

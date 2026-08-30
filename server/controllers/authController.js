@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Participant from "../models/Participant.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -125,8 +126,27 @@ export const getMe = async (req, res) => {
     }
 };
 
+export const getParticipants = async (req, res) => {
+    try {
+        const participants = await Participant.find();
+
+        res.status(200).json({
+            success: true,
+            participants
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 export default {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    getParticipants,
+
 };

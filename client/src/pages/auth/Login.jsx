@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../styles/auth.css";
-import Logo from "../components/Logo";
-import { loginUser } from "../api/auth";
+import "../../styles/auth.css";
+import Logo from "../../components/auth_components/Logo";
+import { loginUser } from "../../api/auth";
 
 function Login() {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function Login() {
           break;
 
         case "CLIENT":
-          navigate("/client/dashboard");
+          navigate("/participant/dashboard");
           break;
 
         default:
@@ -63,10 +63,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <Logo
-          title="EVENTLAY"
-          subtitle="Sign in to continue."
-        />
+        <Logo title="EVENTLAY" subtitle="Sign in to continue." />
 
         <form className="login-form" onSubmit={handleLogin}>
           <div className="input-group">
@@ -97,8 +94,7 @@ function Login() {
         </form>
 
         <p className="bottom-text">
-          Don't have an account?{" "}
-          <Link to="/select-role">Sign Up</Link>
+          Don't have an account? <Link to="/select-role">Sign Up</Link>
         </p>
       </div>
     </div>
